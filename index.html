@@ -11,6 +11,7 @@
     .container {max-width:900px; margin:20px auto; padding:20px; background:white; border-radius:10px; box-shadow:0px 5px 15px rgba(0,0,0,0.1);}
     .activity {border:2px solid #6c63ff; border-radius:8px; padding:15px; margin-bottom:20px;}
     .activity h3 {color:#6c63ff;}
+    .instructions {background:#eef; padding:10px; border-left:4px solid #6c63ff; margin-bottom:10px; font-style:italic;}
     textarea, input[type="text"] {width:100%; padding:10px; margin-top:10px; font-size:1rem; border-radius:5px; border:1px solid #ccc; resize: vertical;}
     button {background:#6c63ff; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; margin-top:10px; font-size:1rem;}
     button:hover {background:#574fd6;}
@@ -26,7 +27,7 @@
 
 <header>
     <h1>Socratic Seminar Extension Menu</h1>
-    <p>Complete your activities and submit online.</p>
+    <p>Complete your activities and submit online. Follow the instructions for each prompt carefully.</p>
 </header>
 
 <div class="container">
@@ -35,28 +36,48 @@
         <input type="text" id="studentName" placeholder="Enter your full name">
     </div>
 
+    <!-- Activity 1 -->
     <div class="activity">
         <h3>1. The Unheard Voices Analysis</h3>
+        <div class="instructions">
+            Choose a character besides Melody. Analyze how they amplify or silence Melody’s voice. Provide a real-world example where someone’s voice was ignored or elevated. End with a thought-provoking question for discussion.
+        </div>
         <textarea id="activity1" placeholder="Type your response here..."></textarea>
     </div>
 
+    <!-- Activity 2 -->
     <div class="activity">
         <h3>2. The Power of Words Micro-Essay</h3>
+        <div class="instructions">
+            Explore how communication gives or takes power in the novel. Include at least 2 examples from the text and 1 real-world connection. Write a short essay (4-6 sentences) explaining your ideas.
+        </div>
         <textarea id="activity2" placeholder="Type your response here..."></textarea>
     </div>
 
+    <!-- Activity 3 -->
     <div class="activity">
         <h3>3. The Hidden Curriculum Investigation</h3>
+        <div class="instructions">
+            Examine the rules, expectations, or systems in Melody’s school. Make a short chart or list: who benefits, who is harmed. Write a reflection (3-5 sentences) explaining what Sharon Draper wants readers to understand about fairness and belonging.
+        </div>
         <textarea id="activity3" placeholder="Type your response here..."></textarea>
     </div>
 
+    <!-- Activity 4 -->
     <div class="activity">
         <h3>4. Rewritten Moment Challenge</h3>
+        <div class="instructions">
+            Choose a scene and rewrite it from a different character’s point of view or change a key decision. Explain in 3-5 sentences how this change alters the theme, message, or understanding of empathy.
+        </div>
         <textarea id="activity4" placeholder="Type your response here..."></textarea>
     </div>
 
+    <!-- Activity 5 -->
     <div class="activity">
         <h3>5. Beyond Melody Synthesis Project</h3>
+        <div class="instructions">
+            Pick a theme from the novel (e.g., communication, inclusion, courage). Connect it to a current event, TED Talk, or social movement. Explain your connection in 3-5 sentences and write a question to discuss in the seminar.
+        </div>
         <textarea id="activity5" placeholder="Type your response here..."></textarea>
     </div>
 
@@ -114,4 +135,5 @@
 
 </body>
 </html>
+
 Add initial Socratic Seminar extension HTML page with 5 interactive activities
