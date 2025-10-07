@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socratic Seminar Extensions</title>
+<style>
+    body {font-family: Arial, sans-serif; background:#f5f5f5; color:#333; margin:0; padding:0;}
+    header {background:#6c63ff; color:white; padding:20px; text-align:center;}
+    h1,h2,h3{margin:0 0 10px;}
+    .container {max-width:900px; margin:20px auto; padding:20px; background:white; border-radius:10px; box-shadow:0px 5px 15px rgba(0,0,0,0.1);}
+    .activity {border:2px solid #6c63ff; border-radius:8px; padding:15px; margin-bottom:20px;}
+    .activity h3 {color:#6c63ff;}
+    textarea, input[type="text"] {width:100%; padding:10px; margin-top:10px; font-size:1rem; border-radius:5px; border:1px solid #ccc; resize: vertical;}
+    button {background:#6c63ff; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; margin-top:10px; font-size:1rem;}
+    button:hover {background:#574fd6;}
+    .submitted {color:green; margin-top:10px; font-weight:bold;}
+    @media(max-width:600px) {
+        .container {padding:10px;}
+        textarea {font-size:0.9rem;}
+        button {width:100%; font-size:1rem;}
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Socratic Seminar Extension Menu</h1>
+    <p>Complete your activities and submit online.</p>
+</header>
+
+<div class="container">
+    <div class="activity">
+        <h3>Student Name:</h3>
+        <input type="text" id="studentName" placeholder="Enter your full name">
+    </div>
+
+    <div class="activity">
+        <h3>1. The Unheard Voices Analysis</h3>
+        <textarea id="activity1" placeholder="Type your response here..."></textarea>
+    </div>
+
+    <div class="activity">
+        <h3>2. The Power of Words Micro-Essay</h3>
+        <textarea id="activity2" placeholder="Type your response here..."></textarea>
+    </div>
+
+    <div class="activity">
+        <h3>3. The Hidden Curriculum Investigation</h3>
+        <textarea id="activity3" placeholder="Type your response here..."></textarea>
+    </div>
+
+    <div class="activity">
+        <h3>4. Rewritten Moment Challenge</h3>
+        <textarea id="activity4" placeholder="Type your response here..."></textarea>
+    </div>
+
+    <div class="activity">
+        <h3>5. Beyond Melody Synthesis Project</h3>
+        <textarea id="activity5" placeholder="Type your response here..."></textarea>
+    </div>
+
+    <button onclick="submitResponses()">Submit Responses</button>
+    <p class="submitted" id="submittedMsg"></p>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Replace with your Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  function submitResponses() {
+    const studentName = document.getElementById('studentName').value.trim();
+    if (!studentName) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    const responses = {
+        timestamp: new Date().toISOString(),
+        studentName: studentName,
+        activity1: document.getElementById('activity1').value.trim(),
+        activity2: document.getElementById('activity2').value.trim(),
+        activity3: document.getElementById('activity3').value.trim(),
+        activity4: document.getElementById('activity4').value.trim(),
+        activity5: document.getElementById('activity5').value.trim()
+    };
+
+    db.collection("SocraticExtensions").add(responses)
+      .then(() => {
+          document.getElementById('submittedMsg').textContent = "Responses submitted successfully! ✅";
+          document.querySelectorAll('textarea').forEach(t => t.disabled = true);
+          document.getElementById('studentName').disabled = true;
+      })
+      .catch((error) => {
+          console.error("Error submitting: ", error);
+          alert("Submission failed. Try again.");
+      });
+  }
+</script>
+
+</body>
+</html>
